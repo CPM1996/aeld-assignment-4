@@ -18,6 +18,8 @@ jobs:
               ssh-keygen -f ~/.ssh/known_hosts -R github.com || true
               ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
               chmod 600 ~/.ssh/known_hosts
+          - name: Test GitHub SSH
+            run: ssh -T git@github.com || test $? -eq 1
           - uses: actions/checkout@v2
           - name: Checkout submodules
             run: git submodule update --init --recursive
