@@ -16,6 +16,7 @@ jobs:
               mkdir -p /root/.ssh
               chmod 700 /root/.ssh
 
+              touch /root/.ssh/known_hosts
               ssh-keygen -R github.com -f /root/.ssh/known_hosts || true
               ssh-keyscan -H -t ed25519,ecdsa,rsa github.com >> /root/.ssh/known_hosts
 
