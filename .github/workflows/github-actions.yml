@@ -11,6 +11,12 @@ jobs:
         runs-on: self-hosted
         timeout-minutes: 120
         steps:
+          - name: Show SSH configuration
+            run: |
+              echo "HOME=$HOME"
+              id
+              ssh -G git@github.com | grep -Ei 'userknownhostsfile|stricthostkeychecking|identityfile'
+
           - name: Configure GitHub SSH host key
             run: |
               mkdir -p ~/.ssh
